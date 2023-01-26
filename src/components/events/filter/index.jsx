@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import './index.scss';
 
 const Filter = ({ setShowSettings, setFilters }) => {
-	const [isMaleChecked, setIsMaleChecked] = useState(false);
-	const [isFemaleChecked, setIsFemaleChecked] = useState(false);
-
-	const [isHydChecked, setIsHydChecked] = useState(false);
-	const [isChennaiChecked, setIsChennaiChecked] = useState(false);
-	const [isBangaloreChecked, setIsBangaloreChecked] = useState(false);
+	const [isChecked, setIsChecked] = useState({
+		gender: {
+			male: false,
+			female: false,
+		},
+		location: {
+			hyderabad: false,
+			chennai: false,
+			bangalore: false,
+		},
+	});
 
 	const formSubmitHandler = (e) => {
 		e.preventDefault();
@@ -16,21 +21,25 @@ const Filter = ({ setShowSettings, setFilters }) => {
 			return {
 				...prevFilters,
 				gender:
-					(isMaleChecked && isFemaleChecked) ||
-					(!isMaleChecked && !isFemaleChecked)
+					(isChecked.gender.male && isChecked.gender.female) ||
+					(!isChecked.gender.male && !isChecked.gender.female)
 						? 'all'
-						: isMaleChecked && !isFemaleChecked
+						: isChecked.gender.male && !isChecked.gender.female
 						? 'male'
 						: 'female',
 				location: {
 					all:
-						(isHydChecked && isChennaiChecked && isBangaloreChecked) ||
-						(!isHydChecked && !isChennaiChecked && !isBangaloreChecked)
+						(isChecked.location.hyderabad &&
+							isChecked.location.chennai &&
+							isChecked.location.bangalore) ||
+						(!isChecked.location.hyderabad &&
+							!isChecked.location.chennai &&
+							!isChecked.location.bangalore)
 							? true
 							: false,
-					hyderabad: isHydChecked,
-					chennai: isChennaiChecked,
-					bangalore: isBangaloreChecked,
+					hyderabad: isChecked.location.hyderabad,
+					chennai: isChecked.location.chennai,
+					bangalore: isChecked.location.bangalore,
 				},
 			};
 		});
@@ -55,8 +64,13 @@ const Filter = ({ setShowSettings, setFilters }) => {
 								name='male'
 								id='male'
 								value='male'
-								checked={isMaleChecked}
-								onChange={() => setIsMaleChecked(!isMaleChecked)}
+								checked={isChecked.gender.male}
+								onChange={() =>
+									setIsChecked((prev) => ({
+										...prev,
+										gender: { ...prev.gender, male: !prev.gender.male },
+									}))
+								}
 							/>
 							<label htmlFor='male'>Male</label>
 						</div>
@@ -67,8 +81,13 @@ const Filter = ({ setShowSettings, setFilters }) => {
 								name='female'
 								id='female'
 								value='female'
-								checked={isFemaleChecked}
-								onChange={() => setIsFemaleChecked(!isFemaleChecked)}
+								checked={isChecked.gender.female}
+								onChange={() =>
+									setIsChecked((prev) => ({
+										...prev,
+										gender: { ...prev.gender, female: !prev.gender.female },
+									}))
+								}
 							/>
 							<label htmlFor='female'>Female</label>
 						</div>
@@ -79,26 +98,43 @@ const Filter = ({ setShowSettings, setFilters }) => {
 					<p>Location</p>
 
 					<div className='locations-list'>
-						<div className='city hyderabad'>
+						<div className='city'>
 							<input
 								type='checkbox'
 								name='hyderabad'
 								id='hyderabad'
 								value='hyderabad'
-								checked={isHydChecked}
-								onChange={() => setIsHydChecked(!isHydChecked)}
+								checked={isChecked.location.hyderabad}
+								// onChange={() => setIsHydChecked(!isHydChecked)}
+								onChange={() => {
+									setIsChecked((prev) => ({
+										...prev,
+										location: {
+											...prev.location,
+											hyderabad: !prev.location.hyderabad,
+										},
+									}));
+								}}
 							/>
 							<label htmlFor='hyderabad'>Hyderabad</label>
 						</div>
 
-						<div className='city chennai'>
+						<div className='city'>
 							<input
 								type='checkbox'
 								name='chennai'
 								id='chennai'
 								value='chennai'
-								checked={isChennaiChecked}
-								onChange={() => setIsChennaiChecked(!isChennaiChecked)}
+								checked={isChecked.location.chennai}
+								onChange={() => {
+									setIsChecked((prev) => ({
+										...prev,
+										location: {
+											...prev.location,
+											chennai: !prev.location.chennai,
+										},
+									}));
+								}}
 							/>
 							<label htmlFor='chennai'>Chennai</label>
 						</div>
@@ -109,8 +145,16 @@ const Filter = ({ setShowSettings, setFilters }) => {
 								name='bangalore'
 								id='bangalore'
 								value='bangalore'
-								checked={isBangaloreChecked}
-								onChange={() => setIsBangaloreChecked(!isBangaloreChecked)}
+								checked={isChecked.location.bangalore}
+								onChange={() => {
+									setIsChecked((prev) => ({
+										...prev,
+										location: {
+											...prev.location,
+											bangalore: !prev.location.bangalore,
+										},
+									}));
+								}}
 							/>
 							<label htmlFor='bangalore'>Bangalore</label>
 						</div>
