@@ -11,8 +11,12 @@ const Details = ({ event }) => {
 				</div>
 
 				<div className='event-details'>
-					<p>Name: {event.name}</p>
-					<p>Location: {event.location}</p>
+					<p>
+						Name: <span>{event.name}</span>
+					</p>
+					<p>
+						Location: <span>{event.location}</span>
+					</p>
 					<p>Date: {event.date}</p>
 					<p>Time: {event.time}</p>
 				</div>
@@ -20,7 +24,8 @@ const Details = ({ event }) => {
 				<div className='event-description'>
 					<h2>Description</h2>
 					<p>
-						{event.name} detected at {event.location} on {event.date}
+						<span>{event.name}</span> detected at <span>{event.location}</span>{' '}
+						on {event.date}
 					</p>
 				</div>
 			</div>

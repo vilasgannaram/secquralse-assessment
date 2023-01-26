@@ -9,9 +9,9 @@ const App = () => {
 	const [gender, setGender] = useState('all');
 	const [location, setLocation] = useState({
 		all: true,
-		Hyderabad: true,
-		Chennai: true,
-		Bangalore: true,
+		hyderabad: true,
+		chennai: true,
+		bangalore: true,
 	});
 	const [date, setDate] = useState('');
 	const [isLoading, setIsLoading] = useState(true);

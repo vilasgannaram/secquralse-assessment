@@ -7,19 +7,33 @@
 	.text-wrapper {
 		margin-top: 3rem;
 
-		// .event-header {
-
-		// }
+		.event-header {
+			h1 {
+				text-transform: uppercase;
+			}
+		}
 		.event-details {
 			margin-top: 2rem;
+			span {
+				text-transform: capitalize;
+			}
 		}
 
 		.event-description {
 			margin-top: 2rem;
+
+			p {
+				span {
+					text-transform: capitalize;
+				}
+			}
 		}
 	}
 
 	.image-wrapper {
+		h2 {
+			text-transform: capitalize;
+		}
 		img {
 			height: 82vh;
 			object-fit: cover;

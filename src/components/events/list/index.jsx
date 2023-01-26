@@ -57,7 +57,8 @@ const List = ({
 						>
 							<div className='list-item-header'>
 								<p>
-									{evt.id}: {evt.location}
+									<span>{evt.id}: </span>
+									{evt.location}
 								</p>
 								<p>
 									{evt.date} {evt.time}

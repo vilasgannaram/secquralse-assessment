@@ -55,6 +55,16 @@
 					display: flex;
 					align-items: center;
 					justify-content: space-between;
+
+					p {
+						&:first-child {
+							text-transform: capitalize;
+
+							span {
+								text-transform: uppercase;
+							}
+						}
+					}
 				}
 			}
 		}

@@ -18,8 +18,8 @@ const Filter = ({ setShowSettings, setGender, setLocation, setDate }) => {
 				(!isMaleChecked && !isFemaleChecked)
 			) {
 				return 'all';
-			} else if (isMaleChecked && !isFemaleChecked) return 'Male';
-			else return 'Female';
+			} else if (isMaleChecked && !isFemaleChecked) return 'male';
+			else return 'female';
 		});
 
 		setLocation((prev) => {
@@ -30,9 +30,9 @@ const Filter = ({ setShowSettings, setGender, setLocation, setDate }) => {
 					(!isHydChecked && !isChennaiChecked && !isBangaloreChecked)
 						? true
 						: false,
-				Hyderabad: isHydChecked,
-				Chennai: isChennaiChecked,
-				Bangalore: isBangaloreChecked,
+				hyderabad: isHydChecked,
+				chennai: isChennaiChecked,
+				bangalore: isBangaloreChecked,
 			};
 		});
 
