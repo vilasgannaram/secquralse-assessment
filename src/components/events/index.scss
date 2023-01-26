@@ -1,0 +1,15 @@
+.loading {
+	height: 90vh;
+	margin: 3.25rem 1rem 0 2.5rem;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+}
+
+.events-container {
+	margin: 3.25rem 1rem 0 2.5rem;
+
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+}

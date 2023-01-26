@@ -1,0 +1,29 @@
+.event-container {
+	padding: 2rem 2rem 0;
+
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+
+	.text-wrapper {
+		margin-top: 3rem;
+
+		// .event-header {
+
+		// }
+		.event-details {
+			margin-top: 2rem;
+		}
+
+		.event-description {
+			margin-top: 2rem;
+		}
+	}
+
+	.image-wrapper {
+		img {
+			height: 82vh;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
+}
