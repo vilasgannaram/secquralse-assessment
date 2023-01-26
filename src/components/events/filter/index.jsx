@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './index.scss';
 
-const Filter = ({ setShowSettings, setGender, setLocation, setDate }) => {
+const Filter = ({ setShowSettings, setFilters }) => {
 	const [isMaleChecked, setIsMaleChecked] = useState(false);
 	const [isFemaleChecked, setIsFemaleChecked] = useState(false);
 
@@ -12,34 +12,29 @@ const Filter = ({ setShowSettings, setGender, setLocation, setDate }) => {
 	const formSubmitHandler = (e) => {
 		e.preventDefault();
 
-		setGender((prev) => {
-			if (
-				(isMaleChecked && isFemaleChecked) ||
-				(!isMaleChecked && !isFemaleChecked)
-			) {
-				return 'all';
-			} else if (isMaleChecked && !isFemaleChecked) return 'male';
-			else return 'female';
-		});
-
-		setLocation((prev) => {
+		setFilters((prevFilters) => {
 			return {
-				...prev,
-				all:
-					(isHydChecked && isChennaiChecked && isBangaloreChecked) ||
-					(!isHydChecked && !isChennaiChecked && !isBangaloreChecked)
-						? true
-						: false,
-				hyderabad: isHydChecked,
-				chennai: isChennaiChecked,
-				bangalore: isBangaloreChecked,
+				...prevFilters,
+				gender:
+					(isMaleChecked && isFemaleChecked) ||
+					(!isMaleChecked && !isFemaleChecked)
+						? 'all'
+						: isMaleChecked && !isFemaleChecked
+						? 'male'
+						: 'female',
+				location: {
+					all:
+						(isHydChecked && isChennaiChecked && isBangaloreChecked) ||
+						(!isHydChecked && !isChennaiChecked && !isBangaloreChecked)
+							? true
+							: false,
+					hyderabad: isHydChecked,
+					chennai: isChennaiChecked,
+					bangalore: isBangaloreChecked,
+				},
 			};
 		});
 
-		// const date = String(e.target[5].value);
-		// const newDate = `${date[8]}${date[9]}-${date[5]}${date[6]}-${date[0]}${date[1]}${date[2]}${date[3]}`;
-
-		// console.log(newDate);
 		setShowSettings(false);
 	};
 

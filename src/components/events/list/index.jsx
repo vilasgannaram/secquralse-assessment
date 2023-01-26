@@ -2,14 +2,7 @@ import React, { useState } from 'react';
 import Filter from '../filter';
 import './index.scss';
 
-const List = ({
-	events,
-	details,
-	setDetails,
-	setGender,
-	setLocation,
-	setDate,
-}) => {
+const List = ({ events, details, setDetails, setFilters }) => {
 	const [showSettings, setShowSettings] = useState(false);
 
 	return (
@@ -39,9 +32,7 @@ const List = ({
 							<div className='settings'>
 								<Filter
 									setShowSettings={setShowSettings}
-									setGender={setGender}
-									setLocation={setLocation}
-									setDate={setDate}
+									setFilters={setFilters}
 								/>
 							</div>
 						)}

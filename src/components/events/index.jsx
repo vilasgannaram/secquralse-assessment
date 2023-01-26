@@ -4,7 +4,7 @@ import Details from './details';
 import List from './list';
 import './index.scss';
 
-const Events = ({ events, setGender, setLocation, setDate, isLoading }) => {
+const Events = ({ events, isLoading, setFilters }) => {
 	const [details, setDetails] = useState({});
 
 	useEffect(() => {
@@ -28,9 +28,7 @@ const Events = ({ events, setGender, setLocation, setDate, isLoading }) => {
 				events={events}
 				details={details}
 				setDetails={setDetails}
-				setGender={setGender}
-				setLocation={setLocation}
-				setDate={setDate}
+				setFilters={setFilters}
 			/>
 		</div>
 	);

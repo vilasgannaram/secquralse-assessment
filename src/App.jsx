@@ -6,14 +6,15 @@ import { Navbar, SideNav, Events } from './components';
 const App = () => {
 	const [events, setEvents] = useState([]);
 	const [filteredEvents, setFilteredEvents] = useState([]);
-	const [gender, setGender] = useState('all');
-	const [location, setLocation] = useState({
-		all: true,
-		hyderabad: true,
-		chennai: true,
-		bangalore: true,
+	const [filters, setFilters] = useState({
+		gender: 'all',
+		location: {
+			all: true,
+			hyderabad: true,
+			chennai: true,
+			bangalore: true,
+		},
 	});
-	const [date, setDate] = useState('');
 	const [isLoading, setIsLoading] = useState(true);
 
 	const getEvents = async () => {
@@ -42,15 +43,16 @@ const App = () => {
 	useEffect(() => {
 		const temp = [];
 		for (let i = events.length - 1; i >= 0; i--) {
-			if (gender === 'all' || gender === events[i].gender) {
-				if (location.all || location[events[i].location]) temp.push(events[i]);
+			if (filters.gender === 'all' || filters.gender === events[i].gender) {
+				if (filters.location.all || filters.location[events[i].location])
+					temp.push(events[i]);
 			}
 		}
 		setFilteredEvents(temp);
 		setTimeout(() => {
 			setIsLoading(false);
 		}, 3000);
-	}, [events, gender, location]);
+	}, [events, filters]);
 
 	return (
 		<>
@@ -59,9 +61,7 @@ const App = () => {
 			<Events
 				isLoading={isLoading}
 				events={filteredEvents}
-				setGender={setGender}
-				setLocation={setLocation}
-				setDate={setDate}
+				setFilters={setFilters}
 			/>
 		</>
 	);
