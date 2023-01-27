@@ -11,6 +11,14 @@ const Filter = ({ setShowSettings, setFilters }) => {
 			hyderabad: false,
 			chennai: false,
 			bangalore: false,
+			res: function () {
+				const arr = [];
+				if (this.hyderabad) arr.push('hyderabad');
+				if (this.bangalore) arr.push('bangalore');
+				if (this.chennai) arr.push('chennai');
+
+				return arr;
+			},
 		},
 	});
 
@@ -26,20 +34,7 @@ const Filter = ({ setShowSettings, setFilters }) => {
 						: selectedFilters.gender.male
 						? 'male'
 						: 'female',
-				location: {
-					all:
-						(selectedFilters.location.hyderabad &&
-							selectedFilters.location.chennai &&
-							selectedFilters.location.bangalore) ||
-						(!selectedFilters.location.hyderabad &&
-							!selectedFilters.location.chennai &&
-							!selectedFilters.location.bangalore)
-							? true
-							: false,
-					hyderabad: selectedFilters.location.hyderabad,
-					chennai: selectedFilters.location.chennai,
-					bangalore: selectedFilters.location.bangalore,
-				},
+				locations: selectedFilters.location.res(),
 			};
 		});
 
