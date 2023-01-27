@@ -11,6 +11,7 @@ const Events = ({ events, setGenderCount }) => {
 	const [filters, setFilters] = useState({
 		gender: '',
 		locations: [],
+		date: '',
 	});
 
 	useEffect(() => {
@@ -29,19 +30,21 @@ const Events = ({ events, setGenderCount }) => {
 					filters.locations.length === 0 ||
 					filters.locations.includes(events[i].location)
 				) {
-					temp.push(events[i]);
+					if (filters.date === '' || filters.date === events[i].date) {
+						temp.push(events[i]);
 
-					if (events[i].gender === 'male') {
-						gCount.male = gCount.male + 1;
-					} else {
-						gCount.female = gCount.female + 1;
+						if (events[i].gender === 'male') {
+							gCount.male = gCount.male + 1;
+						} else {
+							gCount.female = gCount.female + 1;
+						}
 					}
 				}
 			}
 		}
 		setGenderCount(gCount);
 		setFilteredEvents(temp);
-	}, [events, filters]);
+	}, [events, filters, setGenderCount]);
 
 	return (
 		<div className='events-container'>

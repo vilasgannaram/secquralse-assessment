@@ -1,26 +1,38 @@
 import React, { useState } from 'react';
 import './index.scss';
 
-const Filter = ({ setShowSettings, setFilters }) => {
-	const [selectedFilters, setSelectedFilters] = useState({
-		gender: {
-			male: false,
-			female: false,
+const selectedFiltersModal = {
+	gender: {
+		male: false,
+		female: false,
+		res: function () {
+			if (this.male === this.female) {
+				return '';
+			} else if (this.male) {
+				return 'male';
+			} else return 'female';
 		},
-		location: {
-			hyderabad: false,
-			chennai: false,
-			bangalore: false,
-			res: function () {
-				const arr = [];
-				if (this.hyderabad) arr.push('hyderabad');
-				if (this.bangalore) arr.push('bangalore');
-				if (this.chennai) arr.push('chennai');
+	},
 
-				return arr;
-			},
+	location: {
+		hyderabad: false,
+		chennai: false,
+		bangalore: false,
+		res: function () {
+			const arr = [];
+			if (this.hyderabad) arr.push('hyderabad');
+			if (this.bangalore) arr.push('bangalore');
+			if (this.chennai) arr.push('chennai');
+
+			return arr;
 		},
-	});
+	},
+
+	date: '',
+};
+
+const Filter = ({ setShowSettings, setFilters }) => {
+	const [selectedFilters, setSelectedFilters] = useState(selectedFiltersModal);
 
 	const formSubmitHandler = (e) => {
 		e.preventDefault();
@@ -28,13 +40,9 @@ const Filter = ({ setShowSettings, setFilters }) => {
 		setFilters((prevFilters) => {
 			return {
 				...prevFilters,
-				gender:
-					selectedFilters.gender.male === selectedFilters.gender.female
-						? ''
-						: selectedFilters.gender.male
-						? 'male'
-						: 'female',
+				gender: selectedFilters.gender.res(),
 				locations: selectedFilters.location.res(),
+				date: selectedFilters.date,
 			};
 		});
 
@@ -162,6 +170,13 @@ const Filter = ({ setShowSettings, setFilters }) => {
 						id='date'
 						min='2023-01-05'
 						max='2023-01-09'
+						value={selectedFilters.date}
+						onChange={(e) => {
+							setSelectedFilters((prev) => ({
+								...prev,
+								date: e.target.value,
+							}));
+						}}
 					/>
 				</div>
 
