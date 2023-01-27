@@ -105,7 +105,6 @@ const Filter = ({ setShowSettings, setFilters }) => {
 								id='hyderabad'
 								value='hyderabad'
 								checked={isChecked.location.hyderabad}
-								// onChange={() => setIsHydChecked(!isHydChecked)}
 								onChange={() => {
 									setIsChecked((prev) => ({
 										...prev,
@@ -139,7 +138,7 @@ const Filter = ({ setShowSettings, setFilters }) => {
 							<label htmlFor='chennai'>Chennai</label>
 						</div>
 
-						<div className='city bangalore'>
+						<div className='city'>
 							<input
 								type='checkbox'
 								name='bangalore'
@@ -163,7 +162,13 @@ const Filter = ({ setShowSettings, setFilters }) => {
 
 				<div className='date-wrapper'>
 					<p>Date</p>
-					<input type='date' name='date' id='date' />
+					<input
+						type='date'
+						name='date'
+						id='date'
+						min='2023-01-05'
+						max='2023-01-09'
+					/>
 				</div>
 
 				<button type='submit'>Submit</button>

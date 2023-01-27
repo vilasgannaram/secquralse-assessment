@@ -9,12 +9,37 @@
 
 	height: 60px;
 
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
 	.header {
 		color: aliceblue;
 		text-transform: uppercase;
 
 		span {
 			color: red;
+		}
+	}
+
+	.gender-count {
+		color: #fff;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		li {
+			margin: 0 1rem;
+			padding: 0.25rem 1.5rem;
+
+			&.male-count {
+				background-color: green;
+			}
+
+			&.female-count {
+				background-color: red;
+			}
 		}
 	}
 }

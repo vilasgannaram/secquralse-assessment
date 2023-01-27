@@ -15,6 +15,10 @@ const App = () => {
 			bangalore: true,
 		},
 	});
+	const [genderCount, setGenderCount] = useState({
+		male: 0,
+		female: 0,
+	});
 	const [isLoading, setIsLoading] = useState(true);
 
 	const getEvents = async () => {
@@ -42,10 +46,20 @@ const App = () => {
 
 	useEffect(() => {
 		const temp = [];
+		setGenderCount({ male: 0, female: 0 });
 		for (let i = events.length - 1; i >= 0; i--) {
 			if (filters.gender === 'all' || filters.gender === events[i].gender) {
 				if (filters.location.all || filters.location[events[i].location])
-					temp.push(events[i]);
+					if (events[i].gender === 'male') {
+						setGenderCount((prev) => {
+							return { ...prev, male: prev.male + 1 };
+						});
+					} else {
+						setGenderCount((prev) => {
+							return { ...prev, female: prev.female + 1 };
+						});
+					}
+				temp.push(events[i]);
 			}
 		}
 		setFilteredEvents(temp);
@@ -56,7 +70,7 @@ const App = () => {
 
 	return (
 		<>
-			<Navbar />
+			<Navbar genderCount={genderCount} />
 			<SideNav />
 			<Events
 				isLoading={isLoading}
