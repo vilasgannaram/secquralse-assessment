@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './index.scss';
 
 const Filter = ({ setShowSettings, setFilters }) => {
-	const [isChecked, setIsChecked] = useState({
+	const [selectedFilters, setSelectedFilters] = useState({
 		gender: {
 			male: false,
 			female: false,
@@ -21,25 +21,24 @@ const Filter = ({ setShowSettings, setFilters }) => {
 			return {
 				...prevFilters,
 				gender:
-					(isChecked.gender.male && isChecked.gender.female) ||
-					(!isChecked.gender.male && !isChecked.gender.female)
-						? 'all'
-						: isChecked.gender.male && !isChecked.gender.female
+					selectedFilters.gender.male === selectedFilters.gender.female
+						? ''
+						: selectedFilters.gender.male
 						? 'male'
 						: 'female',
 				location: {
 					all:
-						(isChecked.location.hyderabad &&
-							isChecked.location.chennai &&
-							isChecked.location.bangalore) ||
-						(!isChecked.location.hyderabad &&
-							!isChecked.location.chennai &&
-							!isChecked.location.bangalore)
+						(selectedFilters.location.hyderabad &&
+							selectedFilters.location.chennai &&
+							selectedFilters.location.bangalore) ||
+						(!selectedFilters.location.hyderabad &&
+							!selectedFilters.location.chennai &&
+							!selectedFilters.location.bangalore)
 							? true
 							: false,
-					hyderabad: isChecked.location.hyderabad,
-					chennai: isChecked.location.chennai,
-					bangalore: isChecked.location.bangalore,
+					hyderabad: selectedFilters.location.hyderabad,
+					chennai: selectedFilters.location.chennai,
+					bangalore: selectedFilters.location.bangalore,
 				},
 			};
 		});
@@ -64,9 +63,9 @@ const Filter = ({ setShowSettings, setFilters }) => {
 								name='male'
 								id='male'
 								value='male'
-								checked={isChecked.gender.male}
+								checked={selectedFilters.gender.male}
 								onChange={() =>
-									setIsChecked((prev) => ({
+									setSelectedFilters((prev) => ({
 										...prev,
 										gender: { ...prev.gender, male: !prev.gender.male },
 									}))
@@ -81,9 +80,9 @@ const Filter = ({ setShowSettings, setFilters }) => {
 								name='female'
 								id='female'
 								value='female'
-								checked={isChecked.gender.female}
+								checked={selectedFilters.gender.female}
 								onChange={() =>
-									setIsChecked((prev) => ({
+									setSelectedFilters((prev) => ({
 										...prev,
 										gender: { ...prev.gender, female: !prev.gender.female },
 									}))
@@ -104,9 +103,9 @@ const Filter = ({ setShowSettings, setFilters }) => {
 								name='hyderabad'
 								id='hyderabad'
 								value='hyderabad'
-								checked={isChecked.location.hyderabad}
+								checked={selectedFilters.location.hyderabad}
 								onChange={() => {
-									setIsChecked((prev) => ({
+									setSelectedFilters((prev) => ({
 										...prev,
 										location: {
 											...prev.location,
@@ -124,9 +123,9 @@ const Filter = ({ setShowSettings, setFilters }) => {
 								name='chennai'
 								id='chennai'
 								value='chennai'
-								checked={isChecked.location.chennai}
+								checked={selectedFilters.location.chennai}
 								onChange={() => {
-									setIsChecked((prev) => ({
+									setSelectedFilters((prev) => ({
 										...prev,
 										location: {
 											...prev.location,
@@ -144,9 +143,9 @@ const Filter = ({ setShowSettings, setFilters }) => {
 								name='bangalore'
 								id='bangalore'
 								value='bangalore'
-								checked={isChecked.location.bangalore}
+								checked={selectedFilters.location.bangalore}
 								onChange={() => {
-									setIsChecked((prev) => ({
+									setSelectedFilters((prev) => ({
 										...prev,
 										location: {
 											...prev.location,

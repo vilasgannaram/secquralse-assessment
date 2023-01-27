@@ -7,7 +7,7 @@ const App = () => {
 	const [events, setEvents] = useState([]);
 	const [filteredEvents, setFilteredEvents] = useState([]);
 	const [filters, setFilters] = useState({
-		gender: 'all',
+		gender: '',
 		location: {
 			all: true,
 			hyderabad: true,
@@ -48,7 +48,7 @@ const App = () => {
 		const temp = [];
 		setGenderCount({ male: 0, female: 0 });
 		for (let i = events.length - 1; i >= 0; i--) {
-			if (filters.gender === 'all' || filters.gender === events[i].gender) {
+			if (filters.gender === '' || filters.gender === events[i].gender) {
 				if (filters.location.all || filters.location[events[i].location])
 					if (events[i].gender === 'male') {
 						setGenderCount((prev) => {
