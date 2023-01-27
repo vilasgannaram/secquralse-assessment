@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Filter from '../filter';
 import './index.scss';
 
+import { dateWrite } from '../../../utils';
+
 const List = ({ events, details, setDetails, setFilters }) => {
 	const [showSettings, setShowSettings] = useState(false);
 
@@ -51,9 +53,7 @@ const List = ({ events, details, setDetails, setFilters }) => {
 									<span>{evt.id}: </span>
 									{evt.location}
 								</p>
-								<p>
-									{evt.date} {evt.time}
-								</p>
+								<p>{`${dateWrite(evt.date, 'number')} ${evt.time}`}</p>
 							</div>
 							<p>Person detected.</p>
 						</li>
