@@ -4,7 +4,7 @@ const fetchEvents = async () => {
 	const loadedEvents = [];
 
 	const { data } = await axios.get(
-		'https://secquralse-assessment-default-rtdb.firebaseio.com/events.json'
+		'https://secquralse-assignment-4f832-default-rtdb.firebaseio.com/events.json'
 	);
 
 	for (const key in data) {

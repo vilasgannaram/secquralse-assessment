@@ -28,8 +28,6 @@ const monthsRead = [
 	'Dec',
 ];
 
-let date = '2023-01-05';
-
 const pad = (num) => (num < 10 ? `0${num}` : num);
 
 export const dateWrite = (date, type) => {
@@ -49,7 +47,3 @@ export const dateWrite = (date, type) => {
 
 	return result;
 };
-
-console.log(dateWrite(date, 'short'));
-console.log(dateWrite(date, 'long'));
-console.log(dateWrite(date, 'number'));
